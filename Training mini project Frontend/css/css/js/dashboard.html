@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - CampusFind</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+
+<body>
+
+<header class="dashboard-nav">
+
+    <div class="logo">
+        Campus<span>Find</span>
+    </div>
+
+    <nav>
+
+        <a href="dashboard.html">Dashboard</a>
+
+        <a href="browse.html">Browse</a>
+
+        <a href="claims.html">My Claims</a>
+
+        <a href="notifications.html">
+            Notifications
+        </a>
+
+        <button onclick="logout()">
+            Logout
+        </button>
+
+    </nav>
+
+</header>
+
+
+<main class="dashboard">
+
+    <h1>Welcome to CampusFind 👋</h1>
+
+    <p class="dashboard-subtitle">
+        Manage your lost and found items
+    </p>
+
+
+    <section class="dashboard-cards">
+
+        <div class="dash-card">
+
+            <h3>🔍</h3>
+
+            <h2>Report Lost</h2>
+
+            <p>
+                Report an item you have lost on campus.
+            </p>
+
+            <a href="report-lost.html">
+                Report Item →
+            </a>
+
+        </div>
+
+
+        <div class="dash-card">
+
+            <h3>📦</h3>
+
+            <h2>Report Found</h2>
+
+            <p>
+                Found something? Help return it to its owner.
+            </p>
+
+            <a href="report-found.html">
+                Report Item →
+            </a>
+
+        </div>
+
+
+        <div class="dash-card">
+
+            <h3>🔎</h3>
+
+            <h2>Browse Items</h2>
+
+            <p>
+                Search through reported lost and found items.
+            </p>
+
+            <a href="browse.html">
+                Browse →
+            </a>
+
+        </div>
+
+
+        <div class="dash-card">
+
+            <h3>📋</h3>
+
+            <h2>My Claims</h2>
+
+            <p>
+                Track ownership claims you have submitted.
+            </p>
+
+            <a href="claims.html">
+                View Claims →
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <section class="recent-section">
+
+        <div class="section-header">
+
+            <h2>Recent Items</h2>
+
+            <a href="browse.html">
+                View All
+            </a>
+
+        </div>
+
+        <div id="recentItems" class="items-grid"></div>
+
+    </section>
+
+</main>
+
+<script src="js/dashboard.js"></script>
+
+</body>
+</html>

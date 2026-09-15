@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Report Found Item</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        Campus<span>Find</span>
+    </div>
+
+    <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="browse.html">Browse</a>
+    </nav>
+
+</header>
+
+
+<main class="form-page">
+
+    <div class="form-container">
+
+        <h1>Report Found Item</h1>
+
+        <p>
+            Help someone recover their lost belonging.
+        </p>
+
+
+        <form id="foundForm">
+
+            <label>Item Name</label>
+
+            <input
+                type="text"
+                id="foundName"
+                placeholder="Example: Blue Water Bottle"
+                required
+            >
+
+
+            <label>Category</label>
+
+            <select id="foundCategory" required>
+
+                <option value="">
+                    Select category
+                </option>
+
+                <option>Electronics</option>
+                <option>Documents</option>
+                <option>Accessories</option>
+                <option>Books</option>
+                <option>Clothing</option>
+                <option>Wallet</option>
+                <option>Other</option>
+
+            </select>
+
+
+            <label>Color</label>
+
+            <input
+                type="text"
+                id="foundColor"
+                required
+            >
+
+
+            <label>Found Location</label>
+
+            <select id="foundLocation" required>
+
+                <option value="">
+                    Select location
+                </option>
+
+                <option>Library</option>
+                <option>Canteen</option>
+                <option>Parking Area</option>
+                <option>Block A</option>
+                <option>Block B</option>
+                <option>Auditorium</option>
+                <option>Sports Ground</option>
+                <option>Other</option>
+
+            </select>
+
+
+            <label>Date Found</label>
+
+            <input
+                type="date"
+                id="dateFound"
+                required
+            >
+
+
+            <label>Description</label>
+
+            <textarea
+                id="foundDescription"
+                rows="5"
+                placeholder="Describe the item..."
+                required
+            ></textarea>
+
+
+            <button type="submit" class="form-btn">
+                Submit Found Report
+            </button>
+
+        </form>
+
+        <p id="foundMessage"></p>
+
+    </div>
+
+</main>
+
+
+<script src="js/items.js"></script>
+
+</body>
+</html>

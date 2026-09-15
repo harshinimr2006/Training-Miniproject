@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Browse Items - CampusFind</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        Campus<span>Find</span>
+    </div>
+
+    <nav>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="report-lost.html">
+            Report Lost
+        </a>
+
+        <a href="report-found.html">
+            Report Found
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="browse-page">
+
+    <h1>Browse Lost & Found Items</h1>
+
+    <p>
+        Search for items reported on campus.
+    </p>
+
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search item..."
+        >
+
+
+        <select id="typeFilter">
+
+            <option value="All">
+                All Items
+            </option>
+
+            <option value="Lost">
+                Lost
+            </option>
+
+            <option value="Found">
+                Found
+            </option>
+
+        </select>
+
+
+        <select id="categoryFilter">
+
+            <option value="All">
+                All Categories
+            </option>
+
+            <option>Electronics</option>
+            <option>Documents</option>
+            <option>Accessories</option>
+            <option>Books</option>
+            <option>Clothing</option>
+            <option>Wallet</option>
+
+        </select>
+
+
+        <button onclick="searchItems()">
+            Search
+        </button>
+
+    </div>
+
+
+    <div id="itemsContainer"
+         class="browse-grid">
+    </div>
+
+</main>
+
+
+<script>
+
+const sampleItems = [
+
+    {
+        id: 1,
+        name: "Black Wallet",
+        category: "Wallet",
+        color: "Black",
+        location: "Library",
+        date: "2026-09-10",
+        description: "Black leather wallet",
+        type: "Lost",
+        status: "Searching"
+    },
+
+    {
+        id: 2,
+        name: "Blue Water Bottle",
+        category: "Other",
+        color: "Blue",
+        location: "Canteen",
+        date: "2026-09-09",
+        description: "Blue steel water bottle",
+        type: "Found",
+        status: "Available"
+    },
+
+    {
+        id: 3,
+        name: "Wireless Earbuds",
+        category: "Electronics",
+        color: "White",
+        location: "Block A",
+        date: "2026-09-08",
+        description: "White wireless earbuds",
+        type: "Lost",
+        status: "Searching"
+    }
+
+];
+
+
+let storedItems =
+    JSON.parse(localStorage.getItem("items")) || [];
+
+
+let allItems =
+    sampleItems.concat(storedItems);
+
+
+function displayItems(items) {
+
+    const container =
+        document.getElementById("itemsContainer");
+
+    container.innerHTML = "";
+
+
+    if (items.length === 0) {
+
+        container.innerHTML =
+            "<p>No items found.</p>";
+
+        return;
+    }
+
+
+    items.forEach(function(item) {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "browse-card";
+
+
+        card.innerHTML = `
+
+            <div class="item-image">
+                ${item.type === "Lost" ? "🔍" : "📦"}
+            </div>
+
+            <h2>${item.name}</h2>
+
+            <p>
+                <strong>Category:</strong>
+                ${item.category}
+            </p>
+
+            <p>
+                <strong>Color:</strong>
+                ${item.color}
+            </p>
+
+            <p>
+                <strong>Location:</strong>
+                ${item.location}
+            </p>
+
+            <p>
+                <strong>Date:</strong>
+                ${item.date}
+            </p>
+
+            <span class="item-status">
+                ${item.type}
+            </span>
+
+            <button
+                onclick="viewItem(${item.id})">
+                View Details
+            </button>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+function searchItems() {
+
+    const search =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+
+    const type =
+        document
+        .getElementById("typeFilter")
+        .value;
+
+
+    const category =
+        document
+        .getElementById("categoryFilter")
+        .value;
+
+
+    const filtered =
+        allItems.filter(function(item) {
+
+            const matchesSearch =
+                item.name
+                .toLowerCase()
+                .includes(search);
+
+
+            const matchesType =
+                type === "All" ||
+                item.type === type;
+
+
+            const matchesCategory =
+                category === "All" ||
+                item.category === category;
+
+
+            return (
+                matchesSearch &&
+                matchesType &&
+                matchesCategory
+            );
+
+        });
+
+
+    displayItems(filtered);
+
+}
+
+
+function viewItem(id) {
+
+    localStorage.setItem(
+        "selectedItem",
+        id
+    );
+
+    window.location.href =
+        "item-details.html";
+}
+
+
+displayItems(allItems);
+
+</script>
+
+
+<style>
+
+.browse-page {
+    padding: 50px 8%;
+}
+
+.browse-page > p {
+    color: #666;
+    margin-top: 10px;
+}
+
+.search-box {
+    margin-top: 30px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.search-box input,
+.search-box select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.search-box input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.search-box button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.browse-grid {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+    gap: 25px;
+}
+
+.browse-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.item-image {
+    height: 120px;
+    background: #eff6ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.browse-card h2 {
+    margin-bottom: 15px;
+}
+
+.browse-card p {
+    margin: 8px 0;
+    color: #666;
+}
+
+.item-status {
+    display: inline-block;
+    margin: 12px 0;
+    background: #dbeafe;
+    color: #1d4ed8;
+    padding: 5px 12px;
+    border-radius: 20px;
+}
+
+.browse-card button {
+    display: block;
+    width: 100%;
+    padding: 11px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+@media(max-width: 900px) {
+
+    .browse-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media(max-width: 600px) {
+
+    .browse-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+</body>
+</html>

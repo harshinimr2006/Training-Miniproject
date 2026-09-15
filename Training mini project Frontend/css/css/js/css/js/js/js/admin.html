@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - CampusFind</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        Campus<span>Find</span>
+    </div>
+
+    <nav>
+
+        <a href="dashboard.html">
+            User Dashboard
+        </a>
+
+        <a href="index.html">
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="admin-page">
+
+    <h1>Admin Dashboard</h1>
+
+    <p>
+        Manage reports, claims and recovered items.
+    </p>
+
+
+    <section class="admin-stats">
+
+        <div>
+            <h2>124</h2>
+            <p>Total Reports</p>
+        </div>
+
+        <div>
+            <h2>31</h2>
+            <p>Active Reports</p>
+        </div>
+
+        <div>
+            <h2>12</h2>
+            <p>Pending Claims</p>
+        </div>
+
+        <div>
+            <h2>82</h2>
+            <p>Recovered</p>
+        </div>
+
+    </section>
+
+
+    <section class="admin-section">
+
+        <h2>Pending Claims</h2>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Claim ID</th>
+
+                    <th>Item</th>
+
+                    <th>User</th>
+
+                    <th>Date</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="adminClaims">
+
+                <tr>
+
+                    <td>#CL001</td>
+
+                    <td>Black Wallet</td>
+
+                    <td>Student 1</td>
+
+                    <td>10-09-2026</td>
+
+                    <td>
+                        <span class="pending">
+                            Pending
+                        </span>
+                    </td>
+
+                    <td>
+
+                        <button
+                            onclick="approveClaim(this)">
+                            Approve
+                        </button>
+
+                        <button
+                            class="reject"
+                            onclick="rejectClaim(this)">
+                            Reject
+                        </button>
+
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>#CL002</td>
+
+                    <td>Wireless Earbuds</td>
+
+                    <td>Student 2</td>
+
+                    <td>09-09-2026</td>
+
+                    <td>
+                        <span class="pending">
+                            Pending
+                        </span>
+                    </td>
+
+                    <td>
+
+                        <button
+                            onclick="approveClaim(this)">
+                            Approve
+                        </button>
+
+                        <button
+                            class="reject"
+                            onclick="rejectClaim(this)">
+                            Reject
+                        </button>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </section>
+
+</main>
+
+
+<script>
+
+function approveClaim(button) {
+
+    const row =
+        button.parentElement.parentElement;
+
+    row.cells[4].innerHTML =
+        '<span class="approved">Approved</span>';
+
+    button.disabled = true;
+
+}
+
+
+function rejectClaim(button) {
+
+    const row =
+        button.parentElement.parentElement;
+
+    row.cells[4].innerHTML =
+        '<span class="rejected">Rejected</span>';
+
+    button.disabled = true;
+
+}
+
+</script>
+
+
+<style>
+
+.admin-page {
+    padding: 50px 7%;
+}
+
+.admin-page > p {
+    color: #666;
+    margin-top: 8px;
+}
+
+.admin-stats {
+    margin-top: 35px;
+    display: grid;
+    grid-template-columns:
+        repeat(4, 1fr);
+    gap: 20px;
+}
+
+.admin-stats div {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow:
+        0 3px 12px rgba(0,0,0,0.08);
+}
+
+.admin-stats h2 {
+    color: #2563eb;
+    font-size: 30px;
+}
+
+.admin-stats p {
+    color: #666;
+    margin-top: 5px;
+}
+
+.admin-section {
+    margin-top: 50px;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: white;
+}
+
+th,
+td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+th {
+    background: #eff6ff;
+}
+
+table button {
+    padding: 7px 12px;
+    border: none;
+    background: #22c55e;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+table button.reject {
+    background: #ef4444;
+}
+
+.pending {
+    color: #92400e;
+    background: #fef3c7;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+.approved {
+    color: #166534;
+    background: #dcfce7;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+.rejected {
+    color: #991b1b;
+    background: #fee2e2;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+@media(max-width: 900px) {
+
+    .admin-stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+}
+
+</style>
+
+</body>
+</html>

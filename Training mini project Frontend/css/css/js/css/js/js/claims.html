@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Claims - CampusFind</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        Campus<span>Find</span>
+    </div>
+
+    <nav>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="browse.html">
+            Browse
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main class="claims-page">
+
+    <h1>My Claims</h1>
+
+    <p>
+        Track the status of your ownership claims.
+    </p>
+
+
+    <div class="claim-form">
+
+        <h2>Submit Ownership Claim</h2>
+
+        <label>Item Name</label>
+
+        <input
+            type="text"
+            id="claimItem"
+            placeholder="Enter item name"
+        >
+
+
+        <label>Why do you believe this item belongs to you?</label>
+
+        <textarea
+            id="claimReason"
+            rows="4"
+            placeholder="Explain why the item belongs to you..."
+        ></textarea>
+
+
+        <label>
+            Unique Identifying Feature
+        </label>
+
+        <textarea
+            id="uniqueFeature"
+            rows="3"
+            placeholder="Example: Scratch on the back, sticker, etc."
+        ></textarea>
+
+
+        <button onclick="submitClaim()">
+            Submit Claim
+        </button>
+
+        <p id="claimMessage"></p>
+
+    </div>
+
+
+    <h2 class="claim-heading">
+        Previous Claims
+    </h2>
+
+
+    <div id="claimsContainer"></div>
+
+</main>
+
+
+<script src="js/claims.js"></script>
+
+
+<style>
+
+.claims-page {
+    padding: 50px 8%;
+}
+
+.claims-page > p {
+    color: #666;
+    margin-top: 8px;
+}
+
+.claim-form {
+    max-width: 700px;
+    margin-top: 35px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.claim-form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 18px;
+    margin-bottom: 7px;
+}
+
+.claim-form input,
+.claim-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.claim-form button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.claim-heading {
+    margin-top: 50px;
+}
+
+.claim-card {
+    margin-top: 20px;
+    max-width: 700px;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.claim-status {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #fef3c7;
+    color: #92400e;
+}
+
+</style>
+
+</body>
+</html>

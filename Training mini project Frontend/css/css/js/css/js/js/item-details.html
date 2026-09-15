@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Item Details - CampusFind</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">
+        Campus<span>Find</span>
+    </div>
+
+    <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="browse.html">Browse</a>
+    </nav>
+
+</header>
+
+
+<main class="details-page">
+
+    <div id="itemDetails"></div>
+
+</main>
+
+
+<script>
+
+const sampleItems = [
+
+    {
+        id: 1,
+        name: "Black Wallet",
+        category: "Wallet",
+        color: "Black",
+        location: "Library",
+        date: "2026-09-10",
+        description:
+            "Black leather wallet with multiple compartments.",
+        type: "Lost",
+        status: "Searching"
+    },
+
+    {
+        id: 2,
+        name: "Blue Water Bottle",
+        category: "Other",
+        color: "Blue",
+        location: "Canteen",
+        date: "2026-09-09",
+        description:
+            "Blue steel water bottle.",
+        type: "Found",
+        status: "Available"
+    }
+
+];
+
+
+const stored =
+    JSON.parse(localStorage.getItem("items")) || [];
+
+
+const items =
+    sampleItems.concat(stored);
+
+
+const id =
+    Number(localStorage.getItem("selectedItem"));
+
+
+const item =
+    items.find(function(i) {
+        return i.id === id;
+    });
+
+
+const container =
+    document.getElementById("itemDetails");
+
+
+if (item) {
+
+    container.innerHTML = `
+
+        <div class="details-card">
+
+            <div class="details-icon">
+                ${item.type === "Lost" ? "🔍" : "📦"}
+            </div>
+
+            <h1>${item.name}</h1>
+
+            <span class="detail-status">
+                ${item.type}
+            </span>
+
+            <div class="details-info">
+
+                <p>
+                    <strong>Category:</strong>
+                    ${item.category}
+                </p>
+
+                <p>
+                    <strong>Color:</strong>
+                    ${item.color}
+                </p>
+
+                <p>
+                    <strong>Location:</strong>
+                    ${item.location}
+                </p>
+
+                <p>
+                    <strong>Date:</strong>
+                    ${item.date}
+                </p>
+
+                <p>
+                    <strong>Description:</strong>
+                    ${item.description}
+                </p>
+
+            </div>
+
+            ${
+                item.type === "Lost"
+                ?
+                `<button
+                    class="claim-btn"
+                    onclick="submitClaim()">
+                    I Found This Item
+                </button>`
+                :
+                `<button
+                    class="claim-btn"
+                    onclick="submitClaim()">
+                    Claim This Item
+                </button>`
+            }
+
+        </div>
+
+    `;
+
+}
+
+
+function submitClaim() {
+
+    window.location.href =
+        "claims.html";
+
+}
+
+</script>
+
+
+<style>
+
+.details-page {
+    padding: 60px 20px;
+}
+
+.details-card {
+    max-width: 650px;
+    margin: auto;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.details-icon {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    background: #eff6ff;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+}
+
+.details-card h1 {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.detail-status {
+    display: block;
+    width: max-content;
+    margin: 15px auto;
+    padding: 6px 15px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    border-radius: 20px;
+}
+
+.details-info {
+    margin-top: 30px;
+}
+
+.details-info p {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.claim-btn {
+    width: 100%;
+    margin-top: 25px;
+    padding: 14px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+</style>
+
+</body>
+</html>
